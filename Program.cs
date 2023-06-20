@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddGoogleApiClients();
 //unsure what google is so scoped it is
 builder.Services.AddScoped<GoogleSearchProvider>();
+builder.Services.AddScoped<BingSearchProvider>();
 builder.Services.AddScoped<ResultProvider>();
 
 var app = builder.Build();

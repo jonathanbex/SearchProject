@@ -9,11 +9,11 @@ namespace SearchProject.Domain.Setup
     ISearchProvider _bing;
     IConfiguration _config;
     List<Searcher> _searchers;
-    public ResultProvider(IConfiguration config, GoogleSearchProvider google)
+    public ResultProvider(IConfiguration config, GoogleSearchProvider google, BingSearchProvider bing)
     {
       _config = config;
       _google = google;
-      _bing = new BingSearchProvider(_config);
+      _bing = bing;
       _searchers = new List<Searcher>();
       _searchers.Add(new Searcher(_google,"Google"));
       _searchers.Add(new Searcher(_bing,"Bing"));
