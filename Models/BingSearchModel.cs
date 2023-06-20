@@ -13,7 +13,7 @@ namespace SearchProject.Models
   }
   public class WebPage
   {
-    [JsonProperty(PropertyName = "TotalEstimatedMatches")]
+    [JsonProperty(PropertyName = "totalEstimatedMatches")]
     public int? TotalEstimatedMatches { get; set; }
   }
 }
