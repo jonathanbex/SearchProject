@@ -21,7 +21,7 @@ namespace SearchProject.Controllers
       //sanitize input can be done in a filter too
       input = input.Trim();
       var result = await _resultProvider.ResultCount(input);
-      return new SearchResultModel { TotalResults = result };
+      return result;
     }
   }
 }

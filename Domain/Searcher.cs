@@ -2,10 +2,12 @@
 {
   public class Searcher
   {
-    ISearchProvider _provider;
-    public Searcher(ISearchProvider provider)
+    private ISearchProvider _provider;
+    private string _serviceName;
+    public Searcher(ISearchProvider provider, string serviceName)
     {
       _provider = provider;
+      _serviceName = serviceName;
     }
     public async Task<long> SearchProviderForCount(string input)
     {
@@ -28,6 +30,9 @@
 
       return count;
 
+    }
+    public string GetServiceName() { 
+    return _serviceName;
     }
   }
 }

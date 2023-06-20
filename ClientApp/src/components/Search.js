@@ -11,7 +11,7 @@ export class Search extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { loading: false, input: "", resultCount: 0, searched: false };
+        this.state = { loading: false, input: "", results: [], searched: false };
     }
 
     render() {
@@ -88,12 +88,22 @@ export class Search extends Component {
         );
     }
     renderResult(state) {
-        if (state.searched == false) return (<div></div>);
+        if (state.searched === false) return (<div></div>);
         else return (
             <div>
-                <Paper variant="outlined" sx={{ p: { xs: 2, md: 3, backgroundColor: "lightGreen" } }}>
-                    Found {state.resultCount.toLocaleString()} Results
-                </Paper>
+                {state.results.map(result =>
+                    <div>
+                        <Paper variant="outlined" sx={{ p: { xs: 2, md: 3, backgroundColor: "white" } }}>
+                            <Typography variant="h5" >
+                                {result.name}
+                            </Typography>
+                       </Paper>
+                    <Paper variant="outlined" sx={{ p: { xs: 2, md: 3, backgroundColor: "lightGreen" } }}>
+                      {result.totalResults.toLocaleString()} Results were found
+                        </Paper>
+                        <br/>
+                    </div>
+                )}
             </div>
         )
     }
@@ -117,7 +127,7 @@ export class Search extends Component {
         };
         fetch('/search/search/?input=' + input, requestOptions)
             .then(response => response.json())
-            .then(data => { this.setState({ input: input, loading: false, resultCount: data.totalResults, searched: true }); })
+            .then(data => { this.setState({ input: input, loading: false, results: data.results, searched: true }); })
             .catch(err => {
                 alert(err);
                 console.log("error", err);
